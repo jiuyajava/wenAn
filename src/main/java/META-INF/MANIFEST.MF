@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Class-Path: commons-codec-1.9.jar spring-web-5.0.6.RELEASE.jar httpasy
+ ncclient-4.1.jar spring-core-5.0.6.RELEASE.jar rocketmq-client-3.5.8.
+ jar slf4j-api-1.7.5.jar bcprov-jdk14-138.jar commons-logging-1.1.3.ja
+ r gson-2.6.2.jar commons-lang3-3.4.jar httpcore-4.4.1.jar httpclient-
+ 4.4.1.jar spring-jcl-5.0.6.RELEASE.jar log4j-1.2.17.jar spring-beans-
+ 5.0.6.RELEASE.jar aliyun-sdk-mns-1.1.8.jar httpcore-nio-4.4.1.jar fas
+ tjson-1.2.54.jar gson-2.6.2.jar
+Main-Class: meiJia
+
