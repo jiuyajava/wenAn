@@ -23,7 +23,7 @@ public class GuiOne extends JFrame{
         jp1 = new JPanel();
         jp3 = new JPanel();
 
-        String [] ct= {"闹钟"};	//创建
+        String [] ct= {"闹钟","爱心"};	//创建
         jcb1=new JComboBox(ct);		//添加到下拉框中
 
         jlb1 = new JLabel("key");

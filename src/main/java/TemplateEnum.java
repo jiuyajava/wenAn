@@ -4,6 +4,7 @@
 
 public enum  TemplateEnum {
     NaoZhong("闹钟","⏰%s点预告⏰\n","更多好物详见商城 ～","❗️%s元\n\n"),
+    AiXin("爱心","❤%s点预告❤\n","更多超值好物详见商城 ～","\uD83D\uDCE2%s元\n\n"),
 
     ;
 
