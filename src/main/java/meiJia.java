@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class meiJia {
    // private static String dengLu="https://bell-mall.yunshanmeicai.com/login/wechat";
     private static String miaoSha="https://bell-mall.yunshanmeicai.com/mall/seckill";
-    private static String SessionKey="";
+    private static String SessionKey="92cea87e401b8edddd0d8d8788567a53";
 
     public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
@@ -23,7 +23,10 @@ public class meiJia {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                SessionKey = d1.jtf1.getText();
+                String key = d1.jtf1.getText();
+                if(key!=null && !"".equals(key)){
+                    SessionKey = key;
+                }
                 if(SessionKey == null || "".equals(SessionKey)){
                     return;
                 }
