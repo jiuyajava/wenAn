@@ -1,4 +1,5 @@
 
+import com.amazonaws.util.CollectionUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 public class meiJia {
    // private static String dengLu="https://bell-mall.yunshanmeicai.com/login/wechat";
     private static String miaoSha="https://bell-mall.yunshanmeicai.com/mall/seckill";
-    private static String SessionKey="92cea87e401b8edddd0d8d8788567a53";
+    private static String SessionKey="f485ba94579e909d5ad27f733d552266";
 
     public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
@@ -61,7 +62,10 @@ public class meiJia {
         List<Product> products =new ArrayList<>();
         for (Time time: aClass ) {
             ProductOut productOut = miaoSha(time.getStart_time());
-            products.addAll(productOut.getData().getList());
+            if(productOut.getData() != null){
+                products.addAll(productOut.getData().getList());
+            }
+            //products.addAll(productOut.getData().getList());
         }
 
         Map<String, List<Product>> collect = products.stream().collect(Collectors.groupingBy(Product::getStart_time));
