@@ -182,6 +182,14 @@ public class Product {
         this.product_sales_num_txt = product_sales_num_txt;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "start_time='" + start_time + '\'' +
+                ", product_name='" + product_name + '\'' +
+                ", group_product_name='" + group_product_name + '\'' +
+                ", already_nums='" + already_nums + '\'' +
+                ", product_price='" + product_price + '\'' +
+                '}';
+    }
 }

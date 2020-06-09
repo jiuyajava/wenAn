@@ -61,7 +61,14 @@ public class meiJia {
         List<Time> aClass = productOut1.getData().getCLASS();
         List<Product> products =new ArrayList<>();
         for (Time time: aClass ) {
-            ProductOut productOut = miaoSha(time.getStart_time());
+            ProductOut productOut = new ProductOut();
+            for (int i = 0; i < 5; i++) {
+                productOut = miaoSha(time.getStart_time());
+                if(productOut.getData() != null){
+                    break;
+                }
+            }
+            //System.out.println(time.getName() +" : "+ productOut.getData());
             if(productOut.getData() != null){
                 products.addAll(productOut.getData().getList());
             }
@@ -147,7 +154,7 @@ public class meiJia {
         headers.put("X-Group-Token","216151");
         //headers.put("X-Bell-Token","a0bb9c8ece91d6abe067d2b4960b50f9ef768724-3");
         headers.put("X-Session-Key",SessionKey);
-        String str = HttpUtils.post(miaoSha, params,headers,9000, 9000, "UTF-8");
+        String str = HttpUtils.post(miaoSha, params,headers,5000, 5000, "UTF-8");
         str = str.replaceAll("class", "CLASS");
         ProductOut productOut = GSON.fromJson(str, ProductOut.class);
         return productOut;

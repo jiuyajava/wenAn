@@ -119,6 +119,16 @@
             <artifactId>aliyun-sdk-mns</artifactId>
             <version>1.1.8</version>
         </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-bundle</artifactId>
+            <version>1.11.199</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode</groupId>
+            <artifactId>google-api-translate-java</artifactId>
+            <version>0.92</version>
+        </dependency>
     </dependencies>
 
 
