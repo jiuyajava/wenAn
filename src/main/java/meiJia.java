@@ -13,6 +13,7 @@ public class meiJia {
    // private static String dengLu="https://bell-mall.yunshanmeicai.com/login/wechat";
     private static String miaoSha="https://bell-mall.yunshanmeicai.com/mall/seckill";
     private static String SessionKey="f485ba94579e909d5ad27f733d552266";
+    private static String bellToken="cf657d4daa57eabb85c0de6f283c2bf210448f20-3";
 
     public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
@@ -24,19 +25,29 @@ public class meiJia {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String key = d1.jtf1.getText();
-                if(key!=null && !"".equals(key)){
+                String token  = d1.jtf1.getText();
+                String key = d1.jtf2.getText();
+                if(key!=null && !"".equals(key) && token!=null && !"".equals(token)){
                     SessionKey = key;
+                    bellToken = token;
                 }
                 if(SessionKey == null || "".equals(SessionKey)){
                     return;
                 }
                 //获取时间
-                ProductOut productOut1 = miaoSha("");
-                if( productOut1.getData() == null){
-                    //d1.ta.setText("");
-                    d1.ta.append("=======key失效, 联系九涯============\n");
-                    return;
+                Boolean flag = true;
+                int i=0;
+                ProductOut productOut1 = new ProductOut();
+                while (flag){
+                    productOut1 = miaoSha("");
+                    if( productOut1.getData() != null){
+                        flag = false;
+                    }
+                    i++;
+                    if(i>10){
+                        d1.ta.append("=======key失效, 联系九涯============\n");
+                        return;
+                    }
                 }
 
                 //秒杀文案生成
@@ -154,6 +165,7 @@ public class meiJia {
         headers.put("X-Group-Token","216151");
         //headers.put("X-Bell-Token","a0bb9c8ece91d6abe067d2b4960b50f9ef768724-3");
         headers.put("X-Session-Key",SessionKey);
+        headers.put("X-Bell-Token",bellToken);
         String str = HttpUtils.post(miaoSha, params,headers,5000, 5000, "UTF-8");
         str = str.replaceAll("class", "CLASS");
         ProductOut productOut = GSON.fromJson(str, ProductOut.class);
