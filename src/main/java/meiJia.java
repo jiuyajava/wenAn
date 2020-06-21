@@ -39,7 +39,7 @@ public class meiJia {
                 int i=0;
                 ProductOut productOut1 = new ProductOut();
                 while (flag){
-                    productOut1 = miaoSha("");
+                    productOut1 = miaoSha("",d1);
                     if( productOut1.getData() != null){
                         flag = false;
                     }
@@ -74,7 +74,7 @@ public class meiJia {
         for (Time time: aClass ) {
             ProductOut productOut = new ProductOut();
             for (int i = 0; i < 5; i++) {
-                productOut = miaoSha(time.getStart_time());
+                productOut = miaoSha(time.getStart_time(),d1);
                 if(productOut.getData() != null){
                     break;
                 }
@@ -157,7 +157,7 @@ public class meiJia {
     }
 
 
-    public static ProductOut miaoSha(String start_time){
+    public static ProductOut miaoSha(String start_time,GuiOne d1 ){
         Map params = new HashMap();
         params.put("phoneNo", "中文");
         params.put("start_time", start_time);
@@ -168,6 +168,9 @@ public class meiJia {
         headers.put("X-Bell-Token",bellToken);
         String str = HttpUtils.post(miaoSha, params,headers,5000, 5000, "UTF-8");
         str = str.replaceAll("class", "CLASS");
+        if(str.contains("登录过期 请重新登录1028")){
+            d1.ta.append("=======key失效, 联系九涯============\n");
+        }
         ProductOut productOut = GSON.fromJson(str, ProductOut.class);
         return productOut;
     }
