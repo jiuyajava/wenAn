@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public class meiJia {
    // private static String dengLu="https://bell-mall.yunshanmeicai.com/login/wechat";
     private static String miaoSha="https://bell-mall.yunshanmeicai.com/mall/seckill";
-    private static String SessionKey="f485ba94579e909d5ad27f733d552266";
-    private static String bellToken="cf657d4daa57eabb85c0de6f283c2bf210448f20-3";
+    private static String SessionKey="f63e2825560d4377f497ac35bc0eed35";
+    private static String bellToken="36fab5c2f55304cf5cd04cbd55b3737cc9b71dd9-3";
 
     public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
@@ -40,7 +40,7 @@ public class meiJia {
                 ProductOut productOut1 = new ProductOut();
                 while (flag){
                     productOut1 = miaoSha("",d1);
-                    if( productOut1.getData() != null){
+                    if(productOut1!=null && productOut1.getData() != null){
                         flag = false;
                     }
                     i++;
@@ -159,14 +159,18 @@ public class meiJia {
 
     public static ProductOut miaoSha(String start_time,GuiOne d1 ){
         Map params = new HashMap();
-        params.put("phoneNo", "中文");
+        //params.put("phoneNo", "中文");
+        //params.put("version", "1.0.5");
         params.put("start_time", start_time);
         Map headers = new HashMap();
-        headers.put("X-Group-Token","216151");
-        //headers.put("X-Bell-Token","a0bb9c8ece91d6abe067d2b4960b50f9ef768724-3");
-        headers.put("X-Session-Key",SessionKey);
         headers.put("X-Bell-Token",bellToken);
+        headers.put("X-Group-Token","216151");
+        headers.put("X-Session-Key",SessionKey);
+        headers.put("content-type", "application/json");
         String str = HttpUtils.post(miaoSha, params,headers,5000, 5000, "UTF-8");
+        if(str == null){
+            return null;
+        }
         str = str.replaceAll("class", "CLASS");
         if(str.contains("登录过期 请重新登录1028")){
             d1.ta.append("=======key失效, 联系九涯============\n");

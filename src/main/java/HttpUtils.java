@@ -42,7 +42,12 @@ public class HttpUtils {
             Set<Map.Entry> entries = params.entrySet();
             for (Map.Entry entry : entries) {
                 String value = (entry.getValue() != null) ? (String.valueOf(entry.getValue())) : "";
-                paramsStr.append(entry.getKey() + "=" + value + "&");
+                if(value!=""){
+                    paramsStr.append(entry.getKey() + ":" + value);
+                }
+               //paramsStr.append(entry.getKey() + "=" + value + "&");
+               //paramsStr.append("start_time" + "=" + 1593567000);
+
             }
             //只有POST方法才能通过OutputStream(即form的形式)提交参数
             if (method != HttpMethod.POST) {
@@ -58,7 +63,7 @@ public class HttpUtils {
             //创建和初始化连接
             uUrl = new URL(url);
             conn = (HttpURLConnection) uUrl.openConnection();
-            conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+            //conn.setRequestProperty("content-type", "application/json; charset=UTF-8");
             conn.setRequestMethod(method.toString());
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -74,10 +79,12 @@ public class HttpUtils {
                 }
             }
 
-            if (paramsStr != null && method == HttpMethod.POST) {
+            if ( method == HttpMethod.POST) {
                 //发送请求参数
                 out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), encoding));
-                out.write(paramsStr.toString());
+                out.write("{\n" +
+                                paramsStr.toString() +
+                        "}");
                 out.flush();
             }
 
