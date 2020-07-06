@@ -37,23 +37,23 @@ public class HttpUtils {
     private static String invokeUrl(String url, Map params, Map<String, String> headers, int connectTimeout, int readTimeout, String encoding, HttpMethod method) {
         //构造请求参数字符串
         StringBuilder paramsStr = null;
-        if (params != null) {
-            paramsStr = new StringBuilder();
-            Set<Map.Entry> entries = params.entrySet();
-            for (Map.Entry entry : entries) {
-                String value = (entry.getValue() != null) ? (String.valueOf(entry.getValue())) : "";
-                if(value!=""){
-                    paramsStr.append(entry.getKey() + ":" + value);
-                }
-               //paramsStr.append(entry.getKey() + "=" + value + "&");
-               //paramsStr.append("start_time" + "=" + 1593567000);
-
-            }
-            //只有POST方法才能通过OutputStream(即form的形式)提交参数
-            if (method != HttpMethod.POST) {
-                url += "?" + paramsStr.toString();
-            }
-        }
+//        if (params != null) {
+//            paramsStr = new StringBuilder();
+//            Set<Map.Entry> entries = params.entrySet();
+//            for (Map.Entry entry : entries) {
+//                String value = (entry.getValue() != null) ? (String.valueOf(entry.getValue())) : "";
+//                if(value!=""){
+//                    paramsStr.append(entry.getKey() + ":" + value);
+//                }
+//               //paramsStr.append(entry.getKey() + "=" + value + "&");
+//               //paramsStr.append("start_time" + "=" + 1593567000);
+//
+//            }
+//            //只有POST方法才能通过OutputStream(即form的形式)提交参数
+//            if (method != HttpMethod.POST) {
+//                url += "?" + paramsStr.toString();
+//            }
+//        }
 
         URL uUrl = null;
         HttpURLConnection conn = null;
@@ -82,9 +82,14 @@ public class HttpUtils {
             if ( method == HttpMethod.POST) {
                 //发送请求参数
                 out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), encoding));
-                out.write("{\n" +
-                                paramsStr.toString() +
-                        "}");
+                if(params.get("start_time")!=""){
+                    String str = "{" +
+                            "\"start_time\":%s"+
+                            "}";
+                    String start_time = params.get("start_time").toString();
+                    str = String.format(str, start_time);
+                    out.write(str);
+                }
                 out.flush();
             }
 
