@@ -25,6 +25,9 @@ public class ViewAction implements java.awt.event.ActionListener {
             case "京东区区购数据":
                 new GuiOne().View2();
                 v.setVisible(false);
+            case "兴盛优选":
+                new GuiOne().View3();
+                v.setVisible(false);
         }
     }
 
