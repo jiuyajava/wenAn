@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class View1Action implements java.awt.event.ActionListener {
     private static String miaoSha="https://bell-mall.yunshanmeicai.com/mall/seckill";
-    private static String SessionKey="67cd48cb4abd893a999ddbfc035e0a52";
-    private static String bellToken="36fab5c2f55304cf5cd04cbd55b3737cc9b71dd9-3";
+    private static String SessionKey="265cd49b2980a356afbe01cbf31a09ee";
+    private static String bellToken="d5169ea86e7b7495e5b60bc45a29d9e6626af75d-3";
 
     public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
@@ -70,7 +70,7 @@ public class View1Action implements java.awt.event.ActionListener {
                 }
             }
             //System.out.println(time.getName() +" : "+ productOut.getData());
-            if(productOut.getData() != null){
+            if(productOut.getData() != null && productOut.getData().getList() != null){
                 products.addAll(productOut.getData().getList());
             }
             //products.addAll(productOut.getData().getList());
