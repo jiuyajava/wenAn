@@ -154,7 +154,7 @@ public class View1Action implements java.awt.event.ActionListener {
         params.put("start_time", start_time);
         Map headers = new HashMap();
         headers.put("X-Bell-Token",bellToken);
-        headers.put("X-Group-Token","216151");
+        headers.put("X-Group-Token","218845");
         headers.put("X-Session-Key",SessionKey);
         headers.put("content-type", "application/json");
         String str = HttpUtils.post(miaoSha, params,headers,5000, 5000, "UTF-8");
